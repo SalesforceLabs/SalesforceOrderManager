@@ -11,6 +11,8 @@
     <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
     <label>Order Manager</label>
     <navType>Standard</navType>
+    <tabs>Order_Mapper__c</tabs>
+    <tabs>standard-Product2</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Order_Manager_UtilityBar</utilityBar>
 </CustomApplication>

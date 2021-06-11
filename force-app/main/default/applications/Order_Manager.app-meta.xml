@@ -4,14 +4,13 @@
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>Define order manager configurations for your Organization.</description>
+    <description>Control order manager activities for your Organization.</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
     <label>Order Manager</label>
     <navType>Standard</navType>
-    <tabs>Order_Mapper__c</tabs>
     <tabs>standard-Product2</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Order_Manager_UtilityBar</utilityBar>

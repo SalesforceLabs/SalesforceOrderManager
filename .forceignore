@@ -14,3 +14,5 @@ package.xml
 #Order Fields
 **/force-app/main/default/objects/Order
 **/force-app/main/default/objects/OrderItem
+#Pricebook Entry
+PricebookEntry.custom1623166166711

@@ -38,3 +38,4 @@ $RECYCLE.BIN/
 force-app/main/default/profiles
 force-app/main/default/objects/OrderItem
 force-app/main/default/objects/Order
+force-app/main/default/layouts/Order-Order Layout.layout-meta.xml

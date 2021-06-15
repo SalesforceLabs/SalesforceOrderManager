@@ -4,10 +4,16 @@
         <members>Order_Manager</members>
         <name>PermissionSet</name>
     </types>
-    <types>
-            <members>*</members>
-            <name>CustomTab</name>
+    <types>  
+        <members>*</members>
+        <name>CustomTab</name>
         </types>
+     <types>
+        <members>Order_Mapper__mdt</members>
+        <members>Order_Item_Filter__mdt</members>
+        <members>Field_Mapping__mdt</members>
+        <name>CustomObject</name>
+    </types>
     <types>
         <members>*</members>
         <name>ApexClass</name>

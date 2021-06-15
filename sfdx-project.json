@@ -6,7 +6,7 @@
     }
   ],
   "name": "sfdx",
-  "namespace": "",
+  "namespace": "orderManager",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "51.0"
 }

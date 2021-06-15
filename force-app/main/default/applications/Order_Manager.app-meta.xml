@@ -13,5 +13,4 @@
     <navType>Standard</navType>
     <tabs>standard-Product2</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Order_Manager_UtilityBar</utilityBar>
 </CustomApplication>

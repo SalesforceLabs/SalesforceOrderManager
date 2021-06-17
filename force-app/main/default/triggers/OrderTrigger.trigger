@@ -1,3 +1,6 @@
-trigger OrderTrigger on Order (before update) {
-
+trigger OrderTrigger on Order (after update) {
+     if(OrderService.runOnce()){
+        List<Order> orders = trigger.new;
+        OrderService.orderUpdateHandler(orders);
+     }
 }

@@ -1,4 +1,15 @@
 public class OrderService {
+    private static boolean run = true;
+
+    public static boolean runOnce() {
+    if(run){
+     run=false;
+     return true;
+    }else{
+        return run;
+        }
+    }
+
     public static void orderUpdateHandler(List<Order> orders ){
         List<orderManager__Order_Mapper__mdt> orderMappers = OrderMapperSelector.getOrderMappers();
         

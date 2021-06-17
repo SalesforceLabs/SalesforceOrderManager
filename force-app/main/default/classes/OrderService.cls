@@ -27,12 +27,9 @@ public class OrderService {
         Schema.DescribeSobjectResult targetObject = targetObjectType.getDescribe();
         System.debug('The target object is ' + targetObject.getName());
         If (targetObject.getName() =='Asset'){
-            //Map<String, Schema.SObjectField> targetObjectFields = targetObject.fields.getMap(); 
-            //System.debug('The target object fields are ' + targetObjectFields.values());
+            List <Asset> assetLists = new List<Asset>();
             for (OrderItem oi : orderItemsToTarget){
-                sObject sObj = Schema.getGlobalDescribe().get(targetObject.getName()).newSObject() ;
-                System.debug('A new record of the target object  ' + sObj + ' is created' );
-                
+ 				Asset targetAsset = new Asset();
                 Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
                 Schema.SObjectType sobjType = gd.get('OrderItem'); 
                 Schema.DescribeSObjectResult sourceDescribeResult = sobjType.getDescribe(); 
@@ -41,7 +38,7 @@ public class OrderService {
                 Map<String,Schema.SObjectField> targetFieldsMap = targetObject.fields.getMap(); 
                 System.debug('The fields in the target objects are  ' + targetFieldsMap);
                 for(Field_Mapping__mdt fieldMapping :fieldMappings){
-    
+                    
                     String sourceFieldMapping = (String) fieldMapping.orderManager__Source_Field__c;
                     String targetFieldMapping = (String) fieldMapping.orderManager__Target_Field__c;
                     System.debug('The source field to be mapped is ' + sourceFieldMapping);
@@ -54,17 +51,25 @@ public class OrderService {
                     Schema.DescribeFieldResult  targetField = targetFieldsMap.get(targetFieldMapping).getDescribe();
                     System.debug('The target field type to be mapped is ' + targetField.getType());
                     
+                    if(sourceField.name =='OrderItemNumber'){
+                        String sourceFieldValue = (String) oi.get(sourceFieldMapping);
+                        System.debug('The source field value to be mapped is ' + sourceFieldValue);
+                        targetAsset.Name = sourceFieldValue;
+                    }
                     if(sourceField.name =='Product2Id'){
                         Id sourceFieldValue = (Id) oi.get(sourceFieldMapping);
-                                        }
+                    }
                     if(sourceField.name =='Quantity'){
                         Double sourceFieldValue = (Double) oi.get(sourceFieldMapping);
                         System.debug('The source field value to be mapped is ' + sourceFieldValue);
-                        System.debug('The target object Quantity field  ' + targetField.getName());
+                        
+                        targetAsset.Quantity = sourceFieldValue;
+                        System.debug('The target object Quantity field  ' + targetAsset.Quantity );
+ 
                         //sObj.Quantity = sourceFieldValue;
                         
                     }
-    
+                    
                     // Schema.DisplayType sourceFieldDataType = Schema.getGlobalDescribe().OrderItem.get(sourceField).getDescribe().getType();
                     //Schema.DisplayType sourceFieldDataType = Schema.getGlobalDescribe().get(OrderItem).getDescribe().fields.getMap().get(sourceField).getDescribe().getType(); 
                     //oi.fieldMapping.orderManager__Target_Field__c = 'sdf';
@@ -73,12 +78,16 @@ public class OrderService {
                     //Schema.DisplayType sourceFieldDataType = OrderItem.getDescribe().getType();
                     //System.debug('The source field to be mapped is data type ' + fieldMapping.orderManager__Source_Field__c);
                     //if(fieldDataType == 'Decimal'){
-                        
+                    
                     //}
                     //String sourceFieldValue = (String) oi.get(fieldMapping.orderManager__Source_Field__c);
-                   
+                    
                 }
+                targetAsset.AccountId = '0011F00000t7R35QAE';
+                targetAsset.ContactId='0031F00000jjezAQAQ';
+                assetLists.add(targetAsset);
             }
+            insert assetLists;
         }
        
     }

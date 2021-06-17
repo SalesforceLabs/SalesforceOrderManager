@@ -34,7 +34,7 @@ public class OrderService {
         System.debug('orderItemsToTarget size is ' + orderItemsToTarget.size());
         List<Field_Mapping__mdt> fieldMappings= new List<Field_Mapping__mdt>(OrderMapperService.getFieldMappings(orderMapperId));
         System.debug('fieldMappings size is ' + fieldMappings.size());
-        Schema.SObjectType targetObjectType = Schema.getGlobalDescribe().get(orderMapper.orderManager__Target_Object__c);
+        Schema.SObjectType targetObjectType = Schema.getGlobalDescribe().get(orderMapper.orderManager__Target_Object2__c);
         Schema.DescribeSobjectResult targetObject = targetObjectType.getDescribe();
         System.debug('The target object is ' + targetObject.getName());
         If (targetObject.getName() =='Asset'){

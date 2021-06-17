@@ -7,11 +7,16 @@
     <types>  
         <members>*</members>
         <name>CustomTab</name>
-        </types>
+    </types>
+    <types>  
+        <members>Product2-OM Product Layout</members>
+        <name>Layout</name>
+    </types>
      <types>
         <members>Order_Mapper__mdt</members>
         <members>Order_Item_Filter__mdt</members>
         <members>Field_Mapping__mdt</members>
+        <members>Product2</members>
         <name>CustomObject</name>
     </types>
     <types>

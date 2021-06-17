@@ -30,6 +30,8 @@ public class OrderService {
             List <Asset> assetLists = new List<Asset>();
             for (OrderItem oi : orderItemsToTarget){
  				Asset targetAsset = new Asset();
+                targetAsset.AccountId = oi.Order.AccountId;
+                
                 Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
                 Schema.SObjectType sobjType = gd.get('OrderItem'); 
                 Schema.DescribeSObjectResult sourceDescribeResult = sobjType.getDescribe(); 
@@ -47,44 +49,38 @@ public class OrderService {
                     
                     Schema.DescribeFieldResult  sourceField = sourceFieldsMap.get(sourceFieldMapping).getDescribe();
                     System.debug('The source field type to be mapped is ' + sourceField.getType());
+                    Schema.DisplayType sourceFieldDataType = sourceField.getType();
                     
                     Schema.DescribeFieldResult  targetField = targetFieldsMap.get(targetFieldMapping).getDescribe();
+                    
                     System.debug('The target field type to be mapped is ' + targetField.getType());
-                    
-                    if(sourceField.name =='OrderItemNumber'){
+                   
+                    if (sourceFieldDataType == Schema.DisplayType.String){
                         String sourceFieldValue = (String) oi.get(sourceFieldMapping);
-                        System.debug('The source field value to be mapped is ' + sourceFieldValue);
-                        targetAsset.Name = sourceFieldValue;
-                    }
-                    if(sourceField.name =='Product2Id'){
-                        Id sourceFieldValue = (Id) oi.get(sourceFieldMapping);
-                    }
-                    if(sourceField.name =='Quantity'){
+                        String oldString = (String)targetAsset.put(targetField.getName(), sourceFieldValue);
+                    }     
+                    if (sourceFieldDataType == Schema.DisplayType.Double){
                         Double sourceFieldValue = (Double) oi.get(sourceFieldMapping);
-                        System.debug('The source field value to be mapped is ' + sourceFieldValue);
-                        
-                        targetAsset.Quantity = sourceFieldValue;
-                        System.debug('The target object Quantity field  ' + targetAsset.Quantity );
- 
-                        //sObj.Quantity = sourceFieldValue;
-                        
+                        Double oldDouble = (Double)targetAsset.put(targetField.getName(), sourceFieldValue);
+                    } 
+                    if (sourceFieldDataType == Schema.DisplayType.Reference){
+                        Id sourceFieldValue = (Id) oi.get(sourceFieldMapping);
+                        Id oldId = (Id)targetAsset.put(targetField.getName(), sourceFieldValue);
+                    } 
+                    if (sourceFieldDataType == Schema.DisplayType.Boolean){
+                        Boolean sourceFieldValue = (Boolean) oi.get(sourceFieldMapping);
+                        Boolean oldBoolean = (Boolean)targetAsset.put(targetField.getName(), sourceFieldValue);
+                    } 
+                    
+                    if (sourceFieldDataType == Schema.DisplayType.Date){
+                        Date sourceFieldValue = (Date) oi.get(sourceFieldMapping);
+                        Date oldDate = (Date)targetAsset.put(targetField.getName(), sourceFieldValue);
+                    } 
+                    if (sourceFieldDataType == Schema.DisplayType.DateTime){
+                        DateTime sourceFieldValue = (DateTime) oi.get(sourceFieldMapping);
+                        DateTime oldDateTime = (DateTime)targetAsset.put(targetField.getName(), sourceFieldValue);
                     }
-                    
-                    // Schema.DisplayType sourceFieldDataType = Schema.getGlobalDescribe().OrderItem.get(sourceField).getDescribe().getType();
-                    //Schema.DisplayType sourceFieldDataType = Schema.getGlobalDescribe().get(OrderItem).getDescribe().fields.getMap().get(sourceField).getDescribe().getType(); 
-                    //oi.fieldMapping.orderManager__Target_Field__c = 'sdf';
-                    //String sourceFieldName = (String);
-                    //Schema.DescribeFieldResult dfr = Schema.OrderItem.getDescribe();
-                    //Schema.DisplayType sourceFieldDataType = OrderItem.getDescribe().getType();
-                    //System.debug('The source field to be mapped is data type ' + fieldMapping.orderManager__Source_Field__c);
-                    //if(fieldDataType == 'Decimal'){
-                    
-                    //}
-                    //String sourceFieldValue = (String) oi.get(fieldMapping.orderManager__Source_Field__c);
-                    
                 }
-                targetAsset.AccountId = '0011F00000t7R35QAE';
-                targetAsset.ContactId='0031F00000jjezAQAQ';
                 assetLists.add(targetAsset);
             }
             insert assetLists;

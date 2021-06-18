@@ -18,14 +18,37 @@ public class OrderService {
             for (orderManager__Order_Mapper__mdt orderMapper : orderMappers){
                 if (orderMapper.orderManager__Order_Status__c == o.Status){
        				//add the logic on the order record type or other filters 
+
+                    //orderFilter (orderMapper.id,o.id);
                     addToOrdersToTarget = true;
                 }
                 if (addToOrdersToTarget == true){
-                    orderToTarget (orderMapper.id,o.id);
+                    orderToTarget (orderMapper.id,o.id); //This is not bulkified (option to create a wrapper class here)
                 }
             }
         }
     }
+    
+    public static Boolean orderFilter(id orderMapperId, id orderId){
+       orderManager__Order_Mapper__mdt orderMapper = OrderMapperSelector.getOrderMapperbyId(orderMapperId);
+       Boolean addToOrdersToTarget = false;
+       
+       List<String> fields = new List<String>();  
+       List<String> fieldsValues = new List<String>();   
+       if(orderMapper.orderManager__Field1__c != null){
+           System.debug('The orderManager__Field1__c field is not null');
+           fields.add(orderMapper.orderManager__Field1__c);
+           fieldsValues.add(orderMapper.orderManager__Field1_Value__c);
+       }
+       List<Order> orderList1 =  OrderSelector.getOrderbyId(orderId,fields,fieldsValues);
+       if(orderList1.size()>0){
+          addToOrdersToTarget = true;
+    	}
+       System.debug('The Order with id ' + orderId + ' has the addToOrdersToTarget value set to ' + addToOrdersToTarget);
+       return addToOrdersToTarget;
+    }
+    
+
     public static void orderToTarget(id orderMapperId, id orderId){
       	list<OrderItem > orderItems = new List<OrderItem>(OrderLineSelector.getOrderItemsbyOrderId(orderId));
       	list<OrderItem > orderItemsToTarget =new List<OrderItem>();

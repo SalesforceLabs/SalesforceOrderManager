@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Order_Manager</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>  
+        <members>*</members>
+        <name>CustomTab</name>
+    </types>
+    <types>  
+        <members>Product2-OM Product Layout</members>
+        <name>Layout</name>
+    </types>
+     <types>
+        <members>Order_Mapper__mdt</members>
+        <members>Order_Item_Filter__mdt</members>
+        <members>Field_Mapping__mdt</members>
+        <members>Product2</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Order_Manager</members>
+        <name>CustomApplication</name>
+    </types>
+    <version>51.0</version>
+</Package>

@@ -10,6 +10,10 @@
     </types>
     <types>  
         <members>Product2-OM Product Layout</members>
+        <members>Account-OM Account Layout</members>
+        <members>orderManager__Order_Mapper__mdt-Order Mapper Layout</members>
+        <members>orderManager__Order_Item_Filter__mdt-Order Item Filter Layout</members>
+        <members>orderManager__Field_Mapping__mdt-Field Mapping Layout</members>
         <name>Layout</name>
     </types>
      <types>
@@ -18,6 +22,10 @@
         <members>Field_Mapping__mdt</members>
         <members>Product2</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomMetadata</name>
     </types>
     <types>
         <members>*</members>

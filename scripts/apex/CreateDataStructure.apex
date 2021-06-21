@@ -49,16 +49,29 @@
 
     insert priceBookEntry;
 
-/*********Create Accounts  */
+/*********Create Accounts & Order */
     List <Account> accs = new List <Account>();
-    for (Integer i = 0; i<10; i++) ){
+    for (Integer i = 0; i<10; i++ ){
         Account acc = new Account();
-        acc.Name = 'Account generated via script ' + i; 
+        acc.Name = 'Account generated via script 3nd try ' + i; 
         accs.add(acc);
     }
     insert accs;
-    for (Integer i = 0; i<accs.size(); i++) ){
-
+    for (Integer i = 0; i<accs.size(); i++){
+        Order order = new Order();
+        order.AccountId = accs[i].id;
+        order.Status = 'Draft';
+        order.Type = 'Activation';
+        order.EffectiveDate = system.today();
+        insert order;
     }
 
+/*********Create OrderItem  */
+        OrderItem oi = new OrderItem();
+        oi.EndDate = system.today()+100;
+        oi.Product2Id = '01t5400000AyyaQAAR';
+        oi.OrderId = '80154000001YIYtAAO';
+        oi.PricebookEntryId = [SELECT Id FROM PricebookEntry Limit 1].id;
+        oi.Quantity = 2;
+        insert oi;
 

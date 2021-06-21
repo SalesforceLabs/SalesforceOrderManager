@@ -19,6 +19,7 @@ public class OrderMapperService {
                 }
                 if(createTarget == true){
                     filteredOrderItems.add(orderItem);
+                    createTarget = false;
                 }
             }
         }

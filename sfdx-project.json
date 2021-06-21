@@ -8,7 +8,6 @@
             "versionNumber": "0.1.0.NEXT"
         }
     ],
-    "name": "sfdx",
     "namespace": "orderManager",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",

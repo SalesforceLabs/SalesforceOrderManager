@@ -1,4 +1,5 @@
 {
     "orgName": "Scratch Org1",
-    "edition": "Developer"
+    "edition": "Developer",
+    "namespace": "orderManager"
 }

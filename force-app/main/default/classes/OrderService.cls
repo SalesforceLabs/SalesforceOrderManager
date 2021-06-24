@@ -1,4 +1,4 @@
-public class OrderService {
+public without sharing class OrderService {
     private static boolean run = true;
 
     public static boolean runOnce() {
@@ -33,10 +33,28 @@ public class OrderService {
        List<String> fields = new List<String>();  
        List<String> fieldsValues = new List<String>();   
        if(orderMapper.orderManager__Field1__c != null){
-           System.debug('The orderManager__Field1__c field is not null');
+           System.debug('The orderManager__Field1__c field is not null and its value is ' + orderMapper.orderManager__Field1_Value__c);
            fields.add(orderMapper.orderManager__Field1__c);
            fieldsValues.add(orderMapper.orderManager__Field1_Value__c);
        }
+       if(orderMapper.orderManager__Field2__c != null){
+           System.debug('The orderManager__Field2__c field is not null and its value is ' + orderMapper.orderManager__Field2_Value__c);
+           fields.add(orderMapper.orderManager__Field2__c);
+           fieldsValues.add(orderMapper.orderManager__Field2_Value__c);
+       }
+       if(orderMapper.orderManager__Field3__c != null){
+           System.debug('The orderManager__Field3__c field is not null and its value is ' + orderMapper.orderManager__Field3_Value__c);
+           fields.add(orderMapper.orderManager__Field3__c);
+           fieldsValues.add(orderMapper.orderManager__Field3_Value__c);
+       }
+       if(orderMapper.orderManager__Field4__c != null){
+           System.debug('The orderManager__Field4__c field is not null and its value is ' + orderMapper.orderManager__Field4_Value__c);
+           fields.add(orderMapper.orderManager__Field4__c);
+           fieldsValues.add(orderMapper.orderManager__Field4_Value__c);
+       }
+
+
+       
        List<Order> orderList1 =  OrderSelector.getOrderbyId(orderId,fields,fieldsValues);
        if(orderList1.size()>0){
           addToOrdersToTarget = true;

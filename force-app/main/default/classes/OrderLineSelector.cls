@@ -1,7 +1,7 @@
 public class OrderLineSelector {
     public static List <OrderItem> getOrderItemsbyOrderId (Id orderId){
         list<OrderItem > orderItems = new List<OrderItem>();
-        orderItems = [SELECT FIELDS(STANDARD),Order.AccountId, Product2.orderManager__External_Id__c 
+        orderItems = [SELECT FIELDS(STANDARD),Order.AccountId, Product2.orderManager__External_Id__c, Product2.Name
                       FROM OrderItem WHERE OrderId =: orderId];
         return orderItems;
     }

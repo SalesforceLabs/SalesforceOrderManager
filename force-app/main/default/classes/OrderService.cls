@@ -17,10 +17,7 @@ public class OrderService {
             Boolean addToOrdersToTarget = false;
             for (orderManager__Order_Mapper__mdt orderMapper : orderMappers){
                 if (orderMapper.orderManager__Order_Status__c == o.Status){
-       				//add the logic on the order record type or other filters 
-
-                    //orderFilter (orderMapper.id,o.id);
-                    addToOrdersToTarget = true;
+                    addToOrdersToTarget = orderFilter (orderMapper.id,o.id);
                 }
                 if (addToOrdersToTarget == true){
                     orderToTarget (orderMapper.id,o.id); //This is not bulkified (option to create a wrapper class here)
@@ -65,7 +62,9 @@ public class OrderService {
             for (OrderItem oi : orderItemsToTarget){
  				Asset targetAsset = new Asset();
                 targetAsset.AccountId = oi.Order.AccountId;
-                
+                targetAsset.orderManager__Original_Order_Id__c = oi.Order.id;
+                targetAsset.orderManager__Original_Order_Item_Id__c = oi.id;
+                targetAsset.Name = oi.Product2.Name;
                 Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
                 Schema.SObjectType sobjType = gd.get('OrderItem'); 
                 Schema.DescribeSObjectResult sourceDescribeResult = sobjType.getDescribe(); 

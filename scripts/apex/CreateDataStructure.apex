@@ -17,10 +17,21 @@
         QuantityUnitOfMeasure = 'inches',
         DisplayUrl = 'https://www.example.com/',
         ExternalId = 'ID #1234',
-        External_Id__c = '00000012', //change the product id if required
+        External_Id__c = '00000015', //change the product id if required
         IsActive = true
     );
     insert product;
+    Product2 product2 = new Product2(
+        Name = ' Product Test 2',//change the product name if required
+        Description = 'This is the Product description.',
+        Family = 'Example Product Family',
+        QuantityUnitOfMeasure = 'inches',
+        DisplayUrl = 'https://www.example.com/',
+        ExternalId = 'ID #1234',
+        External_Id__c = '00000014', //change the product id if required
+        IsActive = true
+    );
+    insert product2;
 
 
     Pricebook2 standardPriceBook = [
@@ -39,6 +50,16 @@
 
     insert standardPriceBookEntry;
 
+        PricebookEntry standardPriceBookEntry2 = new PricebookEntry(
+        Pricebook2Id = standardPriceBook.Id,
+        Product2Id = product2.Id,
+        UnitPrice = 100.00,
+        UseStandardPrice = false,
+        IsActive = true
+    );
+
+    insert standardPriceBookEntry2;
+
     PricebookEntry priceBookEntry = new PricebookEntry(
         Pricebook2Id = priceBook.Id,
         Product2Id = product.Id,
@@ -48,6 +69,15 @@
     );
 
     insert priceBookEntry;
+        PricebookEntry priceBookEntry2 = new PricebookEntry(
+        Pricebook2Id = priceBook.Id,
+        Product2Id = product2.Id,
+        UnitPrice = 100.00,
+        UseStandardPrice = false,
+        IsActive = true
+    );
+
+    insert priceBookEntry2;
 
 /*********Create Accounts & Order */
     List <Account> accs = new List <Account>();

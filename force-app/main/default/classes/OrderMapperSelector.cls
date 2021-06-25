@@ -11,7 +11,11 @@ public without sharing class OrderMapperSelector {
     }
     public static orderManager__Order_Mapper__mdt getOrderMapperbyId (id orderMapperId){
         orderManager__Order_Mapper__mdt orderMapper = [SELECT id, orderManager__Order_Status__c,orderManager__Source_Object__c,orderManager__Source_Object_Record_Type__c ,
-                       orderManager__Target_Object2__c, orderManager__Field1__c, orderManager__Field1_Value__c FROM orderManager__Order_Mapper__mdt LiMIT 1];
+                       orderManager__Target_Object2__c, orderManager__Field1__c, orderManager__Field1_Value__c,
+                       orderManager__Field2__c, orderManager__Field2_Value__c,
+                       orderManager__Field3__c, orderManager__Field3_Value__c,
+                       orderManager__Field4__c, orderManager__Field4_Value__c 
+                       FROM orderManager__Order_Mapper__mdt LiMIT 1];
         return orderMapper;
     }
 }

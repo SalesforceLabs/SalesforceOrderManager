@@ -3,7 +3,7 @@
     <fullName>Target_Object2__c</fullName>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <label>Target Object2</label>
+    <label>Target Object</label>
     <required>true</required>
     <type>Picklist</type>
     <valueSet>
@@ -14,6 +14,11 @@
                 <fullName>Asset</fullName>
                 <default>true</default>
                 <label>Asset</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <label>Contract</label>
             </value>
         </valueSetDefinition>
     </valueSet>

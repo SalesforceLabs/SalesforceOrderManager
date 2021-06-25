@@ -15,6 +15,7 @@
         <members>orderManager__Order_Item_Filter__mdt-Order Item Filter Layout</members>
         <members>orderManager__Field_Mapping__mdt-Field Mapping Layout</members>
         <members>Asset-OM Asset Layout</members>
+        <members>Contract-OM Contract Layout</members>
         <name>Layout</name>
     </types>
      <types>
@@ -23,6 +24,7 @@
         <members>Field_Mapping__mdt</members>
         <members>Product2</members>
         <members>Asset</members>
+        <members>Contract</members>
         <name>CustomObject</name>
     </types>
     <types>

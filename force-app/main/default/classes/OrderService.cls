@@ -75,7 +75,7 @@ public without sharing class OrderService {
         Schema.SObjectType targetObjectType = Schema.getGlobalDescribe().get(orderMapper.orderManager__Target_Object2__c);
         Schema.DescribeSobjectResult targetObject = targetObjectType.getDescribe();
         System.debug('The target object is ' + targetObject.getName());
-        If (targetObject.getName() =='Asset'){
+        if (targetObject.getName() =='Asset'){
             List <Asset> assetLists = new List<Asset>();
             for (OrderItem oi : orderItemsToTarget){
  				Asset targetAsset = new Asset();
@@ -86,7 +86,7 @@ public without sharing class OrderService {
                 Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
                 Schema.SObjectType sobjType = gd.get('OrderItem'); 
                 Schema.DescribeSObjectResult sourceDescribeResult = sobjType.getDescribe(); 
-                Map<String,Schema.SObjectField> sourceFieldsMap = sourceDescribeResult.fields.getMap(); 
+                Map<String,Schema.SObjctField> sourceFieldsMap = sourceDescribeResult.fields.getMap(); 
                 
                 Map<String,Schema.SObjectField> targetFieldsMap = targetObject.fields.getMap(); 
                 System.debug('The fields in the target objects are  ' + targetFieldsMap);
@@ -135,6 +135,17 @@ public without sharing class OrderService {
                 assetLists.add(targetAsset);
             }
             insert assetLists;
+        }
+        if (targetObject.getName() =='Contract'){
+            List <Contract> contractList = new List<Contract>();
+            for (OrderItem oi : orderItemsToTarget){
+                Contract targetContract =new Contract();
+                targetContract.AccountId = oi.Order.AccountId;
+                targetContract.orderManager__Original_Order_Id__c = oi.Order.id;
+                targetContract.orderManager__Original_Order_Item_Id__c = oi.id;
+                targetContract.Name = oi.Product2.Name;
+            }
+            insert contractList;
         }
        
     }

@@ -12,5 +12,6 @@
     <label>Order Manager</label>
     <navType>Standard</navType>
     <tabs>standard-Product2</tabs>
+    <tabs>Error_Handler__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

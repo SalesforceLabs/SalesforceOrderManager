@@ -1,5 +1,6 @@
 public without sharing class OrderService {
     private static boolean run = true;
+    private static String className = 'OrderService';
 
     public static boolean runOnce() {
     if(run){
@@ -134,8 +135,12 @@ public without sharing class OrderService {
                 }
                 assetLists.add(targetAsset);
             }
-            insert assetLists;
+            try {
+                insert assetLists;
+            }
+            catch (DmlException e){
+                ErrorHandling.createDMLError(e, className,orderId);
+            }
         }
-       
     }
 }

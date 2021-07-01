@@ -1,5 +1,6 @@
 public without sharing class OrderService {
     private static boolean run = true;
+    private static String className = 'OrderService';
 
     public static boolean runOnce() {
     if(run){
@@ -83,6 +84,7 @@ public without sharing class OrderService {
                 targetAsset.orderManager__Original_Order_Id__c = oi.Order.id;
                 targetAsset.orderManager__Original_Order_Item_Id__c = oi.id;
                 targetAsset.Name = oi.Product2.Name;
+                targetAsset.orderManager__Created_By_Order_Manager__c = true;
                 Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
                 Schema.SObjectType sobjType = gd.get('OrderItem'); 
                 Schema.DescribeSObjectResult sourceDescribeResult = sobjType.getDescribe(); 
@@ -134,8 +136,12 @@ public without sharing class OrderService {
                 }
                 assetLists.add(targetAsset);
             }
-            insert assetLists;
+            try {
+                insert assetLists;
+            }
+            catch (DmlException e){
+                ErrorHandling.createDMLError(e, className,orderId);
+            }
         }
-       
     }
 }

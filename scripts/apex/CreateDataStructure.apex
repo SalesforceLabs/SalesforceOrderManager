@@ -17,8 +17,9 @@
         QuantityUnitOfMeasure = 'inches',
         DisplayUrl = 'https://www.example.com/',
         ExternalId = 'ID #1234',
-        orderManager__External_Id__c = '0000001', //change the product id if required
-        IsActive = true
+        //orderManager__External_Id__c = '0000001', //change the product id if required
+        IsActive = true,
+        orderManager__Create_Asset__c = true
     );
     insert product;
     Product2 product2 = new Product2(
@@ -28,7 +29,7 @@
         QuantityUnitOfMeasure = 'inches',
         DisplayUrl = 'https://www.example.com/',
         ExternalId = 'ID #1234',
-        orderManager__External_Id__c = '0000002', //change the product id if required
+        //orderManager__External_Id__c = '0000002', //change the product id if required
         IsActive = true
     );
     insert product2;

@@ -107,13 +107,6 @@
         <fields>MasterLabel</fields>
         <fields>DeveloperName</fields>
         <fields>NamespacePrefix</fields>
-        <fields>External_Id__c</fields>
-        <relatedList>Order_Item_Filter__mdt.Order_Mapper__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>MasterLabel</fields>
-        <fields>DeveloperName</fields>
-        <fields>NamespacePrefix</fields>
         <fields>Source_Field__c</fields>
         <fields>Target_Field__c</fields>
         <relatedList>Field_Mapping__mdt.Order_Mapper__c</relatedList>
@@ -124,7 +117,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h54000004L3F5</masterLabel>
+        <masterLabel>00h1k000002H8x1</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

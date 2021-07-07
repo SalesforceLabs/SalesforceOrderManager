@@ -5,7 +5,7 @@
         <name>PermissionSet</name>
     </types>
     <types>  
-        <members>*</members>
+        <members>Error_Handler__c</members>
         <name>CustomTab</name>
     </types>
     <types>  

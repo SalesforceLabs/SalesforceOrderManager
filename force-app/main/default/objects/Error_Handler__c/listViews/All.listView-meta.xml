@@ -5,8 +5,8 @@
     <columns>CREATED_DATE</columns>
     <columns>Class_Name__c</columns>
     <columns>Type__c</columns>
-    <columns>Line_Number__c</columns>
     <columns>Message__c</columns>
+    <columns>Description__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

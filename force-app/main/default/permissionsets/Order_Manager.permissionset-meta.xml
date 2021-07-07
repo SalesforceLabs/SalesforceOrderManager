@@ -120,6 +120,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Order_Manager</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>standard-Asset</tab>
         <visibility>Visible</visibility>
     </tabSettings>

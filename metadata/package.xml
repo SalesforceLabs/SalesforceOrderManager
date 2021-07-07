@@ -17,5 +17,34 @@
         <members>Order_Manager</members>
         <name>PermissionSet</name>
     </types>
+    <types>  
+        <members>Order Manager/New_Error_Handler_Report_aTr</members>
+        <members>Order Manager/New_Assets_Report_U8c</members>
+        <members>OrderManager</members>
+        <name>Report</name>
+    </types>
+    <types>  
+        <members>Order Manager/mnfbPNTlWfPyxPmMxhjeDKBkWOlbzI</members>
+        <members>Order Manager/WTDSMUxQpANDaJyFFixMAjwdOyppMR</members>
+        <members>OrderManager</members>
+        <name>Dashboard</name>
+    </types>
+    <types>
+        <members>Order_Manager</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>  
+        <members>*</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>  
+        <members>*</members>
+        <name>Group</name>
+    </types>
+    <types>  
+        <members>Error_Handler__c</members>
+        <members>Order_Manager</members>
+        <name>CustomTab</name>
+    </types>
     <version>51.0</version>
 </Package>

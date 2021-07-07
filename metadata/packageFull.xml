@@ -6,6 +6,7 @@
     </types>
     <types>  
         <members>Error_Handler__c</members>
+        <members>Order_Manager</members>
         <name>CustomTab</name>
     </types>
     <types>  
@@ -43,5 +44,22 @@
         <members>Order_Manager</members>
         <name>CustomApplication</name>
     </types>
+    <types>  
+        <members>Public Reports/New_Error_Handler_Report_aTr</members>
+        <members>Public Reports/New_Assets_Report_U8c</members>
+        <name>Report</name>
+    </types>
+    <types>  
+        <members>Order Manager/mnfbPNTlWfPyxPmMxhjeDKBkWOlbzI</members>
+        <members>Order Manager/WTDSMUxQpANDaJyFFixMAjwdOyppMR</members>
+        <name>Dashboard</name>
+    </types>
+    <types>  
+        <members>*</members>
+        <name>Group</name>
+    </types>
+
+    
+
     <version>51.0</version>
 </Package>

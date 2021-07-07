@@ -11,7 +11,9 @@
     <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
     <label>Order Manager</label>
     <navType>Standard</navType>
-    <tabs>standard-Product2</tabs>
+    <tabs>Order_Manager</tabs>
     <tabs>Error_Handler__c</tabs>
+    <tabs>standard-Product2</tabs>
+    <tabs>standard-Order</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

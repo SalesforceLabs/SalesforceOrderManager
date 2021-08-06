@@ -11,7 +11,7 @@
     /*********Create Product & Pricebook Entry */
 
     Product2 product = new Product2(
-        Name = 'Product Test',//change the product name if required
+        Name = 'Product Test for Asset',//change the product name if required
         Description = 'This is the Product description.',
         Family = 'Example Product Family',
         QuantityUnitOfMeasure = 'inches',
@@ -23,7 +23,7 @@
     );
     insert product;
     Product2 product2 = new Product2(
-        Name = 'Product Test 2',//change the product name if required
+        Name = 'Product Test 2 - non Asset',//change the product name if required
         Description = 'This is the Product description.',
         Family = 'Example Product Family',
         QuantityUnitOfMeasure = 'inches',

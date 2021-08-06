@@ -1,6 +1,6 @@
 # Salesforce Order Manager
 
-The `Order Manager` Application offers a practical implementation of order management processes are handled in Salesforce. This is an incremental project and the first distribution will focus on Order to Asset process i.e. creating an asset for Order Items when the related Order is complete.
+The `Order Manager` Application offers a practical implementation of how order management processes are handled in Salesforce. This is an incremental project and the first distribution will focus on the Order to Asset process i.e. creating an asset for Order Items when the related Order is completed.
 
 ## Distribution
 
@@ -8,10 +8,9 @@ The project will be distributed via Managed Package published in Salesforce Labs
 
 ## How it works
 
-The Order Manager application will create an Asset for each Order Item when the related Order is completed. Order to Asset process will kick off only for Orders that match the filters defined in the Order Mapper metadata record type ( see [Configure the Order Mapper metadata ](#Configure-the-Order-Mapper)). In addition, Asset records will be created only for Order Item whose Product has been previously marked as requiring an Asset ( see [Set Create Asset Field on Products](#Set-Create-Asset-Field-on-Products) ). Field values will be copied from Order Item to Asset record based on the Field Mappeing configuration (see [Configure the Field Mapping metadata ](#Configure-Field-Mapping))
+The Order Manager application will create an Asset for each Order Item when the related Order is completed. Order to Asset process will kick off only for Orders that match the filters defined in the Order Mapper metadata record type ( see [Configure the Order Mapper metadata ](#Configure-the-Order-Mapper)). In addition, Asset records will be created only for Order Item where the related Product has been marked as requiring an Asset ( see [Set Create Asset Field on Products](#Set-Create-Asset-Field-on-Products) ). Field values will be copied from Order Item to Asset record based on the Field Mapping configuration (see [Configure the Field Mapping metadata ](#Configure-Field-Mapping))
 
-
-
+![Order to Asset](docs/OrderToAsset.gif)
 
 
 ## What to do to make it work
@@ -42,7 +41,7 @@ Select a user. </li>
 The following
 
 ### Set Create Asset Field on Products
-Products for which you expect the application to create an Asset should be marked with the Create Asset field value set to true. This field can be access via the Order Manager Application direclty or via the OM Product Layout.
+Products for which you expect the application to create an Asset should be marked with the Create Asset field value set to true. This field can be accessed via the Order Manager Application direclty or via the OM Product Layout.
 
 ![Product Create Asset](docs/ProductCreateAsset.gif)
 
@@ -55,7 +54,7 @@ Orders can be filtered via following steps:
 
 <ol>
 <li>From Setup, enter <strong>Custom Metadata Types</strong>  in the Quick Find box, then select <strong>Custom Metadata Types</strong>. </li>
-<li>In the <strong>Custom Metadata Types</strong> list, seach for <strong>Order Mapper</strong> and then  click on Manage Records.</li>
+<li>In the <strong>Custom Metadata Types</strong> list, search for <strong>Order Mapper</strong> and then  click on Manage Records.</li>
 <li> Change the <strong>Order Status</strong> value if required. This is the value that will be considered to initiate the Order to Asset process and by its default value is Activated. </li>
 <li> Add or Change existing filters using the Field Name and Field Value fields. </li>
 <li> Click Save. </li>
@@ -75,7 +74,7 @@ This can be defined via the following steps:
 <ol>
 <li>From Setup, enter <strong>Custom Metadata Types</strong>  in the Quick Find box, then select <strong>Custom Metadata Types</strong>. </li>
 <li>In the <strong>Custom Metadata Types</strong> list, search for  <strong>Field Mapping</strong> record and then click on Manage Records.</li>
-<li> Add new Field Mapping or Change theexisting ones making sure the Order Mapper lookup field is pointing to the Order to Asset record. </li>
+<li> Add new Field Mapping or Change the existing ones making sure the Order Mapper lookup field is pointing to the Order to Asset record. </li>
 <li> Click Save. </li>
 </ol>
 

@@ -26,6 +26,7 @@
         <members>Product2</members>
         <members>Asset</members>
         <members>orderManager__Error_Handler__c</members>
+        <members>orderManager__Order_Filter__mdt</members>
         <name>CustomObject</name>
     </types>
     <types>

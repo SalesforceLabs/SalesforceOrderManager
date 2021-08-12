@@ -17,7 +17,6 @@
         QuantityUnitOfMeasure = 'inches',
         DisplayUrl = 'https://www.example.com/',
         ExternalId = 'ID #1234',
-        //orderManager__External_Id__c = '0000001', //change the product id if required
         IsActive = true,
         orderManager__Create_Asset__c = true
     );
@@ -29,7 +28,6 @@
         QuantityUnitOfMeasure = 'inches',
         DisplayUrl = 'https://www.example.com/',
         ExternalId = 'ID #1234',
-        //orderManager__External_Id__c = '0000002', //change the product id if required
         IsActive = true
     );
     insert product2;

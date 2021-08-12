@@ -3,12 +3,8 @@
     <label>Order to Asset</label>
     <protected>false</protected>
     <values>
-        <field>Field1_Value__c</field>
-        <value xsi:type="xsd:string">Activation</value>
-    </values>
-    <values>
-        <field>Field1__c</field>
-        <value xsi:type="xsd:string">Type</value>
+        <field>Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>Order_Status__c</field>

@@ -1,13 +1,5 @@
 public without sharing class ErrorHandling {
-    private String errorMessage         {get; set;}
-    private String errorLine            {get; set;}
-    private String typeOfError          {get; set;}
 
-    public ErrorHandling (Exception e){
-        this.errorMessage   = e.getMessage();
-        this.errorLine      = String.valueOf(e.getLineNumber());
-        this.typeOfError    = e.getTypeName();
-    }
     public static void createDMLError(Exception e, String className, Id orderId) {
         System.debug('Custom Error Handling  ' + e.getMessage() + ' Type  ' + e.getTypeName()  + ' at line '+ 
         String.valueOf(e.getLineNumber()) + ' in the class ' + className);

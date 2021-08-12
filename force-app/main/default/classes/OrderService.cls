@@ -17,63 +17,61 @@ public without sharing class OrderService {
         for (Order o : orders){
             Boolean addToOrdersToTarget = false;
             for (orderManager__Order_Mapper__mdt orderMapper : orderMappers){
-                if (orderMapper.orderManager__Order_Status__c == o.Status){
+                if (orderMapper.orderManager__Order_Status__c == o.Status && orderMapper.orderManager__Active__c == true){
                     addToOrdersToTarget = orderFilter (orderMapper.id,o.id);
                 }
                 if (addToOrdersToTarget == true){
-                    orderToTarget (orderMapper.id,o.id); //This is not bulkified (option to create a wrapper class here)
+                    orderToTarget (orderMapper.id,o.id); 
                 }
             }
         }
     }
     
     public static Boolean orderFilter(id orderMapperId, id orderId){
-       orderManager__Order_Mapper__mdt orderMapper = OrderMapperSelector.getOrderMapperbyId(orderMapperId);
        Boolean addToOrdersToTarget = false;
-       
-       List<String> fields = new List<String>();  
-       List<String> fieldsValues = new List<String>();   
-       if(orderMapper.orderManager__Field1__c != null){
-           System.debug('The orderManager__Field1__c field is not null and its value is ' + orderMapper.orderManager__Field1_Value__c);
-           fields.add(orderMapper.orderManager__Field1__c);
-           fieldsValues.add(orderMapper.orderManager__Field1_Value__c);
-       }
-       if(orderMapper.orderManager__Field2__c != null){
-           System.debug('The orderManager__Field2__c field is not null and its value is ' + orderMapper.orderManager__Field2_Value__c);
-           fields.add(orderMapper.orderManager__Field2__c);
-           fieldsValues.add(orderMapper.orderManager__Field2_Value__c);
-       }
-       if(orderMapper.orderManager__Field3__c != null){
-           System.debug('The orderManager__Field3__c field is not null and its value is ' + orderMapper.orderManager__Field3_Value__c);
-           fields.add(orderMapper.orderManager__Field3__c);
-           fieldsValues.add(orderMapper.orderManager__Field3_Value__c);
-       }
-       if(orderMapper.orderManager__Field4__c != null){
-           System.debug('The orderManager__Field4__c field is not null and its value is ' + orderMapper.orderManager__Field4_Value__c);
-           fields.add(orderMapper.orderManager__Field4__c);
-           fieldsValues.add(orderMapper.orderManager__Field4_Value__c);
-       }
+       Integer countOfFields = 0;
+       orderManager__Order_Mapper__mdt orderMapper = OrderMapperSelector.getOrderMapperbyId(orderMapperId);
+       List<orderManager__Order_Filter__mdt> orderFilters = OrderFilterSelector.getOrderFilters(orderMapperId);
+       List<String> fieldsToQuery = new List<String>();
 
-
-       
-       List<Order> orderList1 =  OrderSelector.getOrderbyId(orderId,fields,fieldsValues);
-       if(orderList1.size()>0){
-          addToOrdersToTarget = true;
-    	}
+       for (orderManager__Order_Filter__mdt orderFilter :orderFilters){
+            fieldsToQuery.add(orderFilter.orderManager__Field_Name__c);
+       }
+       Order orderToCheck = OrderSelector.getOrderbyId(orderId, fieldsToQuery);
+       for (orderManager__Order_Filter__mdt orderFilter :orderFilters){
+            String fieldName = orderFilter.orderManager__Field_Name__c;
+            String fieldValue = orderFilter.orderManager__Field_Value__c;
+            String orderFieldValue = (String)orderToCheck.get(fieldName);
+            if (orderFieldValue == fieldValue){
+                countOfFields = countOfFields + 1;
+            }  
+       }
+       System.debug('Number of fields matching the field filter values  is ' + countOfFields);
+       if (countOfFields == orderFilters.size()){
+            addToOrdersToTarget = true;
+       }
        System.debug('The Order with id ' + orderId + ' has the addToOrdersToTarget value set to ' + addToOrdersToTarget);
        return addToOrdersToTarget;
     }
     
 
     public static void orderToTarget(id orderMapperId, id orderId){
-        list<OrderItem > orderItems = new List<OrderItem>(OrderLineSelector.getOrderItemsbyOrderIdFiltered(orderId));
+        
       	list<OrderItem > orderItemsToTarget =new List<OrderItem>();
         orderManager__Order_Mapper__mdt orderMapper = OrderMapperSelector.getOrderMapperbyId(orderMapperId);
         List<Field_Mapping__mdt> fieldMappings= new List<Field_Mapping__mdt>(OrderMapperService.getFieldMappings(orderMapperId));
+        
+        List<String> fieldsToQuery = new List<String>();
+        System.debug(' Field mapping size is ' + fieldMappings.size());
+        for(Field_Mapping__mdt fieldMapping : fieldMappings){
+            fieldsToQuery.add(fieldMapping.orderManager__Source_Field__c);
+            System.debug(' Fields to query on the Order Line Items is ' + fieldMapping.orderManager__Source_Field__c);
+        }
+        list<OrderItem > orderItems = new List<OrderItem>(OrderLineSelector.getOrderItemsbyOrderIdFiltered(orderId, fieldsToQuery));
         Schema.SObjectType targetObjectType = Schema.getGlobalDescribe().get(orderMapper.orderManager__Target_Object2__c);
         Schema.DescribeSobjectResult targetObject = targetObjectType.getDescribe();
         System.debug('The target object is ' + targetObject.getName());
-        If (targetObject.getName() =='Asset'){
+        if (targetObject.getName() =='Asset'){
             List <Asset> assetLists = new List<Asset>();
             for (OrderItem oi : orderItems){
  				Asset targetAsset = new Asset();

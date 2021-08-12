@@ -24,19 +24,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Field1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Field2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Field3__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Field4__c</field>
+                <field>Active__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -54,22 +42,6 @@
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Field1_Value__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Field2_Value__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Field3_Value__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Field4_Value__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -104,6 +76,12 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <fields>DeveloperName</fields>
+        <fields>Field_Name__c</fields>
+        <fields>Field_Value__c</fields>
+        <relatedList>Order_Filter__mdt.Order_Mapper__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>MasterLabel</fields>
         <fields>DeveloperName</fields>
         <fields>NamespacePrefix</fields>
@@ -117,7 +95,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1k000002H8x1</masterLabel>
+        <masterLabel>00h17000007KoLw</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

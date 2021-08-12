@@ -8,7 +8,7 @@ The project will be distributed via Managed Package published in Salesforce Labs
 
 ## How it works
 
-The Order Manager application will create an Asset for each Order Item when the related Order is completed. Order to Asset process will kick off only for Orders that match the filters defined in the Order Mapper metadata record type ( see [Configure the Order Mapper metadata ](#Configure-the-Order-Mapper)). In addition, Asset records will be created only for Order Item where the related Product has been marked as requiring an Asset ( see [Set Create Asset Field on Products](#Set-Create-Asset-Field-on-Products) ). Field values will be copied from Order Item to Asset record based on the Field Mapping configuration (see [Configure the Field Mapping metadata ](#Configure-Field-Mapping))
+The Order Manager application will create an Asset record for each Order Item when the related Order is completed. `Order to Asset` process will kick off only for Orders that match the filters defined in the Order Mapper metadata record type ( see [Configure the Order Mapper metadata ](#Configure-the-Order-Mapper)). In addition, Asset records will be created only for Order Item where the related Product has been marked as requiring an Asset ( see [Set Create Asset Field on Products](#Set-Create-Asset-Field-on-Products) ). Field values will be copied from the Order Item to the Asset record based on the Field Mapping configuration (see [Configure the Field Mapping metadata ](#Configure-Field-Mapping))
 
 ![Order to Asset](docs/OrderToAsset.gif)
 
@@ -48,21 +48,36 @@ Products for which you expect the application to create an Asset should be marke
 
 ### Configure the Order Mapper
 
-You need to define which types of Orders will result in Assets created and also which fields will be mapped from Order Item records to the Asset records.
+`Order Mapper` metadata record type allows you to define which types of Orders will initiate the Asset creation. The following screenshot illustrates the default Order Mapper record (i.e. Order to Asset), with the two order filters (Type and Description fields) and three field mappings whose values will be copied from the Order Item record to the Asset record.
+
+
+![Order Filter](docs/OrderMapperConfiguration.png)
+
 
 Orders can be filtered via following steps:
 
 <ol>
 <li>From Setup, enter <strong>Custom Metadata Types</strong>  in the Quick Find box, then select <strong>Custom Metadata Types</strong>. </li>
+<li>In the <strong>Custom Metadata Types</strong> list, search for <strong>Order Filter</strong> and then  click on Manage Records.</li>
+<li> Click on New and then enter a label, field name (i.e. the field API Name) and field value.</li>
+<li> Select the Order Mapper record e.g. the <strong>Order to Asset</strong> record.</li>
+<li> Click Save. </li>
+</ol>
+
+![Order Filter](docs/OrderFilter.gif)
+
+Use the following steps if you need change the Order Status that will trigger the Asset process (the default value is Activated).
+
+<ol>
+<li>From Setup, enter <strong>Custom Metadata Types</strong>  in the Quick Find box, then select <strong>Custom Metadata Types</strong>. </li>
 <li>In the <strong>Custom Metadata Types</strong> list, search for <strong>Order Mapper</strong> and then  click on Manage Records.</li>
-<li> Change the <strong>Order Status</strong> value if required. This is the value that will be considered to initiate the Order to Asset process and by its default value is Activated. </li>
-<li> Add or Change existing filters using the Field Name and Field Value fields. </li>
+<li> Change the <strong>Order Status</strong> value if required. This is the value that will be considered to initiate the Order to Asset process (the default value is Activated) </li>
 <li> Click Save. </li>
 </ol>
 
 
 
-![Order MApper](docs/OrderMapper.gif)
+
 
 
 ### Configure Field Mapping

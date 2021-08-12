@@ -1,50 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>  
-        <members>orderManager__Error_Handler__c</members>
+    <types>
+        <members>orderManager__Order_Filter__mdt</members>
+        <members>Order_Mapper__mdt</members>
         <name>CustomObject</name>
     </types>
     <types>  
-        <members>Error_Handler__c</members>
-        <name>CustomTab</name>
-    </types>
-    <types>  
-        <members>orderManager__Error_Handler__c-Error Handler Layout</members>
-        <members>Product2-OM Product Layout</members>
+        <members>orderManager__Order_Mapper__mdt-Order Mapper Layout</members>
         <name>Layout</name>
     </types>
-    <types>  
-        <members>Order_Manager</members>
-        <name>PermissionSet</name>
-    </types>
-    <types>  
-        <members>Order Manager/New_Error_Handler_Report_aTr</members>
-        <members>Order Manager/New_Assets_Report_U8c</members>
-        <members>OrderManager</members>
-        <name>Report</name>
-    </types>
-    <types>  
-        <members>Order Manager/mnfbPNTlWfPyxPmMxhjeDKBkWOlbzI</members>
-        <members>Order Manager/WTDSMUxQpANDaJyFFixMAjwdOyppMR</members>
-        <members>OrderManager</members>
-        <name>Dashboard</name>
-    </types>
     <types>
-        <members>Order_Manager</members>
-        <name>CustomApplication</name>
-    </types>
-    <types>  
         <members>*</members>
-        <name>FlexiPage</name>
-    </types>
-    <types>  
-        <members>*</members>
-        <name>Group</name>
-    </types>
-    <types>  
-        <members>Error_Handler__c</members>
-        <members>Order_Manager</members>
-        <name>CustomTab</name>
+        <name>CustomMetadata</name>
     </types>
     <version>51.0</version>
 </Package>

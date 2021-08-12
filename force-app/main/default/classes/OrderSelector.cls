@@ -1,45 +1,32 @@
 public without sharing class OrderSelector {
-    public static List <Order> getOrderbyId (Id orderId, List<String> fields, List<String> fieldsValues  ) {
-        Order order = new Order();
+    private static String className = 'OrderSelector';
+    public static  Order getOrderbyId (Id orderId, List<String> fieldsToQuery) {
+        Order orderToCheck = new Order();
         List<Order> orderList = new List<Order>();
-        if(fields.size()==0){
-            order = [ SELECT Id, Status FROM ORDER WHERE id =: orderId];
-            orderList.add(order);
+        System.debug('FieldsToQuery size is ' + fieldsToQuery.size());
+        try{
+            if(fieldsToQuery.size()==0){
+            orderList = Database.query('SELECT Id FROM Order WHERE Id =:orderid');
             }
-        if(fields.size()==1){
-            String field = fields[0];
-            String fieldValue = fieldsValues[0];
-            orderList = Database.query('SELECT Id, ' + field + ' FROM Order WHERE Id =:orderid AND '+ field + ' =: fieldValue');
+            if(fieldsToQuery.size()!=0){
+                String query = ' ';
+                for(Integer i = 0; i < fieldsToQuery.size(); i++){
+                    String fieldName = fieldsToQuery[i];
+                    if(i!=fieldsToQuery.size()-1){
+                        query = query + ' ' + fieldName + ' , ';
+                    }
+                    if(i == fieldsToQuery.size()-1) {
+                        query = query + ' '+ fieldName + ' ';
+                    }
+                }
+                System.debug('The fields included in the query for the order are ' + query);
+                orderList = Database.query('SELECT Id , ' + query + ' FROM Order WHERE Id =:orderid');
             }
-        if(fields.size()==2){
-            String field1 = fields[0];
-            String fieldValue1 = fieldsValues[0];
-            String field2 = fields[1];
-            String fieldValue2 = fieldsValues[1];
-            orderList = Database.query('SELECT Id, ' + field1 + ' , ' + field2 + ' FROM Order WHERE Id =:orderid AND '+ field1 + ' =: fieldValue1 AND ' + field2 + ' =: fieldValue2');
-            }
-
-        if(fields.size()==3){
-            String field1 = fields[0];
-            String fieldValue1 = fieldsValues[0];
-            String field2 = fields[1];
-            String fieldValue2 = fieldsValues[1];
-            String field3 = fields[2];
-            String fieldValue3 = fieldsValues[2];
-            orderList = Database.query('SELECT Id, ' + field1 + ' , ' +  field2 + ' , ' +  field3 + ' FROM Order WHERE Id =:orderid AND '+ field1 + ' =: fieldValue1 AND ' + field2 + ' =: fieldValue2 AND ' + field3 + ' =: fieldValue3');
-            }
-        if(fields.size()==4){
-            String field1 = fields[0];
-            String fieldValue1 = fieldsValues[0];
-            String field2 = fields[1];
-            String fieldValue2 = fieldsValues[1];
-            String field3 = fields[2];
-            String fieldValue3 = fieldsValues[2];
-            String field4 = fields[3];
-            String fieldValue4 = fieldsValues[3];
-
-            orderList = Database.query('SELECT Id, ' + field1 + ' , ' +  field2 + ' , ' +  field3 + ' , ' +  field4 + ' FROM Order WHERE Id =:orderid AND '+ field1 + ' =: fieldValue1 AND ' + field2 + ' =: fieldValue2 AND ' + field3 + ' =: fieldValue3 AND '+ field4 + ' =: fieldValue4');
-            }
-        return orderList;
+            orderToCheck = orderList[0];
+        }
+        catch (QueryException e){
+            ErrorHandling.createDMLError(e, className,orderId);
+        }
+        return orderToCheck;
     }
 }

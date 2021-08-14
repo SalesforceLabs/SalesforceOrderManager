@@ -98,7 +98,7 @@ This can be defined via the following steps:
 
 ## How to monitor while it works
 
-The application behaviour the be monitored in the <strong>Order Manager</strong>  application via the preconfigured Dashboards. Make sure you have been assigned the <strong>Order Manager</strong>  Permission Set, this is requried to access the application.
+The application behaviour the be monitored in the <strong>Order Manager</strong>  application via the preconfigured Dashboards. Make sure you have been assigned the <strong>Order Manager</strong>  Permission Set, this is required to access the application.
 
 
 ![Order Manager Dashboard](docs/OrderManagerDashboard.png)
@@ -106,3 +106,12 @@ The application behaviour the be monitored in the <strong>Order Manager</strong>
 Exceptions can also be found in the <strong>Error Handler</strong> tab as shown below.
 
 ![Error Handler](docs/ErrorHandler.png)
+
+## Additional things to consider
+
+<ol>
+<li> Users should be assigned to a Profile with Activate Orders permission in order to be able to activate Orders. </li>
+<li> Order Filters are currently limited to one value per Order field. Please let me know if you require this feature and it will be part of the next release. </li>
+<li> If multiple Order Mapper records are applicable to the same Order, then the same Order record will result in multiple Asset records created (which is generally an undesirable behaviour). The best practice is to limit the amount of Order Mapper records and use selective filters to make sure the same order won't be processed by multiple Order Mappers.</li>
+<li> In case multiple Order Mappers are required, the best practice is always create a field mapping for the Product2 lookup.</li>
+</ol>

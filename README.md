@@ -38,10 +38,12 @@ Select a user. </li>
 
 
 ### Assign the OM Layout
-The following new Layouts have been created for the Order Manager app. You can assign the layouts following the Salesforce Layout Assignment steps (refer to [Assign Page Layouts from a Customize Page Layout or Record Type Page](https://help.salesforce.com/s/articleView?id=sf.layouts_assigning.htm&type=5 ).
+The following new Layouts have been created for the Order Manager app. 
 - Product2-OM Product Layout
 - Account-OM Account Layout
 - Asset-OM Asset Layout
+
+You can assign the layouts following the Salesforce Layout Assignment steps (refer to [Assign Page Layouts from a Customize Page Layout or Record Type Page](https://help.salesforce.com/s/articleView?id=sf.layouts_assigning.htm&type=5 ).
 
 ### Set Create Asset Field on Products
 Products for which you expect the application to create an Asset should be marked with the Create Asset field value set to true. This field can be accessed via the Order Manager Application direclty or via the OM Product Layout.

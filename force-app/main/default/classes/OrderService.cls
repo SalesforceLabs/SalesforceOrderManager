@@ -13,14 +13,15 @@ public without sharing class OrderService {
 
     public static void orderUpdateHandler(List<Order> orders ){
         List<orderManager__Order_Mapper__mdt> orderMappers = OrderMapperSelector.getOrderMappers();
-        
+        System.debug('OrderService.orderUpdateHandler - The number of Order Mapper records found is ' + orderMappers.size());
         for (Order o : orders){
-            Boolean addToOrdersToTarget = false;
             for (orderManager__Order_Mapper__mdt orderMapper : orderMappers){
+                Boolean addToOrdersToTarget = false;
                 if (orderMapper.orderManager__Order_Status__c == o.Status && orderMapper.orderManager__Active__c == true){
                     addToOrdersToTarget = orderFilter (orderMapper.id,o.id);
                 }
                 if (addToOrdersToTarget == true){
+                    System.debug('OrderService.orderUpdateHandler - The order with id ' + o.id + ' will use the Order Mapper with label ' + orderMapper.MasterLabel );
                     orderToTarget (orderMapper.id,o.id); 
                 }
             }
@@ -46,11 +47,11 @@ public without sharing class OrderService {
                 countOfFields = countOfFields + 1;
             }  
        }
-       System.debug('Number of fields matching the field filter values  is ' + countOfFields);
+       System.debug('OrderService.orderFilter - Number of fields matching the field filter values  is ' + countOfFields);
        if (countOfFields == orderFilters.size()){
             addToOrdersToTarget = true;
        }
-       System.debug('The Order with id ' + orderId + ' has the addToOrdersToTarget value set to ' + addToOrdersToTarget);
+       System.debug('OrderService.orderFilter -The Order with id ' + orderId + ' has the addToOrdersToTarget value set to ' + addToOrdersToTarget);
        return addToOrdersToTarget;
     }
     
@@ -62,15 +63,15 @@ public without sharing class OrderService {
         List<Field_Mapping__mdt> fieldMappings= new List<Field_Mapping__mdt>(OrderMapperService.getFieldMappings(orderMapperId));
         
         List<String> fieldsToQuery = new List<String>();
-        System.debug(' Field mapping size is ' + fieldMappings.size());
+        System.debug('OrderService.orderToTarget - Field mapping size is ' + fieldMappings.size());
         for(Field_Mapping__mdt fieldMapping : fieldMappings){
             fieldsToQuery.add(fieldMapping.orderManager__Source_Field__c);
-            System.debug(' Fields to query on the Order Line Items is ' + fieldMapping.orderManager__Source_Field__c);
+            System.debug('OrderService.orderToTarget - Fields to query on the Order Line Items is ' + fieldMapping.orderManager__Source_Field__c);
         }
         list<OrderItem > orderItems = new List<OrderItem>(OrderLineSelector.getOrderItemsbyOrderIdFiltered(orderId, fieldsToQuery));
         Schema.SObjectType targetObjectType = Schema.getGlobalDescribe().get(orderMapper.orderManager__Target_Object2__c);
         Schema.DescribeSobjectResult targetObject = targetObjectType.getDescribe();
-        System.debug('The target object is ' + targetObject.getName());
+        System.debug('OrderService.orderToTarget - The target object is ' + targetObject.getName());
         if (targetObject.getName() =='Asset'){
             List <Asset> assetLists = new List<Asset>();
             for (OrderItem oi : orderItems){
@@ -85,18 +86,15 @@ public without sharing class OrderService {
                 Schema.DescribeSObjectResult sourceDescribeResult = sobjType.getDescribe(); 
                 Map<String,Schema.SObjectField> sourceFieldsMap = sourceDescribeResult.fields.getMap();   
                 Map<String,Schema.SObjectField> targetFieldsMap = targetObject.fields.getMap(); 
-                System.debug('The fields in the target objects are  ' + targetFieldsMap);
+                System.debug('OrderService.orderToTarget - The fields in the target objects are  ' + targetFieldsMap);
                 try {
                     for(Field_Mapping__mdt fieldMapping :fieldMappings){
                         String sourceFieldMapping = (String) fieldMapping.orderManager__Source_Field__c;
                         String targetFieldMapping = (String) fieldMapping.orderManager__Target_Field__c;
-                        System.debug('The source field to be mapped is ' + sourceFieldMapping);
-                        System.debug('The target field to be mapped is ' + targetFieldMapping);
                         Schema.DescribeFieldResult  sourceField = sourceFieldsMap.get(sourceFieldMapping).getDescribe();
-                        System.debug('The source field type to be mapped is ' + sourceField.getType());
                         Schema.DisplayType sourceFieldDataType = sourceField.getType();
                         Schema.DescribeFieldResult  targetField = targetFieldsMap.get(targetFieldMapping).getDescribe();
-                        System.debug('The target field type to be mapped is ' + targetField.getType());
+                        System.debug('OrderService.orderToTarget - The source field to be mapped is ' + sourceFieldMapping +  ' of type ' + sourceField.getType() + ' and the target field is '+ targetFieldMapping + ' of type ' + targetField.getType());
                         if (sourceFieldDataType == Schema.DisplayType.String){
                             String sourceFieldValue = (String) oi.get(sourceFieldMapping);
                             String oldString = (String)targetAsset.put(targetField.getName(), sourceFieldValue);
@@ -132,6 +130,7 @@ public without sharing class OrderService {
                 assetLists.add(targetAsset);
             }
             try {
+                System.debug('OrderService.orderToTarget - The number of Asset records to be created is  ' + assetLists.size());
                 insert assetLists;
             }
             catch (DmlException e){

@@ -3,7 +3,6 @@ public class OrderLineSelector {
 
     public static List <OrderItem> getOrderItemsbyOrderIdFiltered (Id orderId, List<String> fieldsToQuery){
         list<OrderItem > orderItemsReturned = new List<OrderItem>();
-        System.debug('getOrderItemsbyOrderIdFiltered - The number of fields included in the query is ' + fieldsToQuery.size());
         try {
             list<OrderItem > orderItems = new List<OrderItem>();
             if(fieldsToQuery.size()==0){
@@ -24,7 +23,7 @@ public class OrderLineSelector {
                 }
                 System.debug('The fields included in the query for the order item are ' + query);
                 String queryString = 'SELECT Id , OrderId , Order.AccountId , Product2.Name, Product2.orderManager__Create_Asset__c ,  ' + query + ' FROM OrderItem WHERE OrderId = :orderId AND Product2.orderManager__Create_Asset__c = true';
-                System.debug('The query is ' + queryString);
+                System.debug('OrderLineSelector - The query is ' + queryString);
                 orderItems = Database.query(queryString);
                 for (OrderItem oi : orderItems){
                     orderItemsReturned.add(oi);

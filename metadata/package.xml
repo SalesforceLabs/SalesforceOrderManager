@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>orderManager__Order_Filter__mdt</members>
         <members>Order_Mapper__mdt</members>
+        <members>Field_Mapping__mdt</members>
+        <members>orderManager__Order_Filter__mdt</members>
         <name>CustomObject</name>
-    </types>
-    <types>  
-        <members>orderManager__Order_Mapper__mdt-Order Mapper Layout</members>
-        <name>Layout</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomMetadata</name>
     </types>
     <version>51.0</version>
 </Package>

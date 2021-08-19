@@ -15,12 +15,6 @@
                 <default>true</default>
                 <label>Asset</label>
             </value>
-            <value>
-                <fullName>Contract</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Contract</label>
-            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

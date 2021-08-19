@@ -119,4 +119,7 @@ Exceptions can also be found in the <strong>Error Handler</strong> tab as shown 
 <li> Order Filters are currently limited to one value per Order field. Please let me know if you require this feature and it will be part of the next release. </li>
 <li> If multiple Order Mapper records are applicable to the same Order, then the same Order record will result in multiple Asset records created (which is generally an undesirable behaviour). The best practice is to limit the amount of Order Mapper records and use selective filters to make sure the same order won't be processed by multiple Order Mappers.</li>
 <li> In case multiple Order Mappers are required, the best practice is always create a field mapping for the Product2 lookup.</li>
+<li> OM Dashboard and Report folders are shared with AllUsers. If you want to apply a restricted level of access, you'll need to change the folder sharing.</li>
 </ol>
+
+![ReportSharing](docs/ReportSharing.png)

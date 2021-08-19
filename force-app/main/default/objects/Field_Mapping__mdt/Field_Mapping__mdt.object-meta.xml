@@ -2,5 +2,5 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Field Mapping</label>
     <pluralLabel>Field Mappings</pluralLabel>
-    <visibility>PackageProtected</visibility>
+    <visibility>Public</visibility>
 </CustomObject>

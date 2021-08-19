@@ -13,7 +13,6 @@
         <members>Product2-OM Product Layout</members>
         <members>Account-OM Account Layout</members>
         <members>orderManager__Order_Mapper__mdt-Order Mapper Layout</members>
-        <members>orderManager__Order_Item_Filter__mdt-Order Item Filter Layout</members>
         <members>orderManager__Field_Mapping__mdt-Field Mapping Layout</members>
         <members>Asset-OM Asset Layout</members>
         <members>orderManager__Error_Handler__c-Error Handler Layout</members>
@@ -21,7 +20,6 @@
     </types>
      <types>
         <members>Order_Mapper__mdt</members>
-        <members>Order_Item_Filter__mdt</members>
         <members>Field_Mapping__mdt</members>
         <members>Product2</members>
         <members>Asset</members>

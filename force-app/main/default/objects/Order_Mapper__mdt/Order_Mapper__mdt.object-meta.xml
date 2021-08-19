@@ -2,5 +2,5 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Order Mapper</label>
     <pluralLabel>Order Mapper</pluralLabel>
-    <visibility>PackageProtected</visibility>
+    <visibility>Public</visibility>
 </CustomObject>

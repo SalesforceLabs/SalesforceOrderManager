@@ -1,6 +1,7 @@
 public without sharing class OrderService {
     private static boolean run = true;
-    private static String className = 'OrderService';
+
+    static final String CLASS_NAME = 'OrderService';
 
     public static boolean runOnce() {
     if(run){
@@ -70,75 +71,81 @@ public without sharing class OrderService {
                 fieldsToQuery.add(fieldMapping.orderManager__Source_Field__c);
                 System.debug('OrderService.orderToTarget - Fields to query on the Order Line Items is ' + fieldMapping.orderManager__Source_Field__c);
             }
-            list<OrderItem > orderItems = new List<OrderItem>(OrderLineSelector.getOrderItemsbyOrderIdFiltered(orderId, fieldsToQuery));
-            Schema.SObjectType targetObjectType = Schema.getGlobalDescribe().get(orderMapper.orderManager__Target_Object2__c);
-            Schema.DescribeSobjectResult targetObject = targetObjectType.getDescribe();
-            System.debug('OrderService.orderToTarget - The target object is ' + targetObject.getName());
-            if (targetObject.getName() =='Asset'){
-                List <Asset> assetLists = new List<Asset>();
-                for (OrderItem oi : orderItems){
-                    Asset targetAsset = new Asset();
-                    targetAsset.AccountId = oi.Order.AccountId;
-                    targetAsset.orderManager__Original_Order_Id__c = oi.Order.id;
-                    targetAsset.orderManager__Original_Order_Item_Id__c = oi.id;
-                    targetAsset.Name = oi.Product2.Name;
-                    targetAsset.orderManager__Created_By_Order_Manager__c = true;
-                    Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
-                    Schema.SObjectType sobjType = gd.get('OrderItem'); 
-                    Schema.DescribeSObjectResult sourceDescribeResult = sobjType.getDescribe(); 
-                    Map<String,Schema.SObjectField> sourceFieldsMap = sourceDescribeResult.fields.getMap();   
-                    Map<String,Schema.SObjectField> targetFieldsMap = targetObject.fields.getMap(); 
-                    System.debug('OrderService.orderToTarget - The fields in the target objects are  ' + targetFieldsMap);
-                    try {
-                        for(Field_Mapping__mdt fieldMapping :fieldMappings){
-                            String sourceFieldMapping = (String) fieldMapping.orderManager__Source_Field__c;
-                            String targetFieldMapping = (String) fieldMapping.orderManager__Target_Field__c;
-                            Schema.DescribeFieldResult  sourceField = sourceFieldsMap.get(sourceFieldMapping).getDescribe();
-                            Schema.DisplayType sourceFieldDataType = sourceField.getType();
-                            Schema.DescribeFieldResult  targetField = targetFieldsMap.get(targetFieldMapping).getDescribe();
-                            System.debug('OrderService.orderToTarget - The source field to be mapped is ' + sourceFieldMapping +  ' of type ' + sourceField.getType() + ' and the target field is '+ targetFieldMapping + ' of type ' + targetField.getType());
-                            if (sourceFieldDataType == Schema.DisplayType.String){
-                                String sourceFieldValue = (String) oi.get(sourceFieldMapping);
-                                String oldString = (String)targetAsset.put(targetField.getName(), sourceFieldValue);
-                            }     
-                            if (sourceFieldDataType == Schema.DisplayType.Double){
-                                Double sourceFieldValue = (Double) oi.get(sourceFieldMapping);
-                                Double oldDouble = (Double)targetAsset.put(targetField.getName(), sourceFieldValue);
-                            } 
-                            if (sourceFieldDataType == Schema.DisplayType.Reference){
-                                Id sourceFieldValue = (Id) oi.get(sourceFieldMapping);
-                                Id oldId = (Id)targetAsset.put(targetField.getName(), sourceFieldValue);
-                            } 
-                            if (sourceFieldDataType == Schema.DisplayType.Boolean){
-                                Boolean sourceFieldValue = (Boolean) oi.get(sourceFieldMapping);
-                                Boolean oldBoolean = (Boolean)targetAsset.put(targetField.getName(), sourceFieldValue);
-                            } 
-                            
-                            if (sourceFieldDataType == Schema.DisplayType.Date){
-                                Date sourceFieldValue = (Date) oi.get(sourceFieldMapping);
-                                Date oldDate = (Date)targetAsset.put(targetField.getName(), sourceFieldValue);
-                            } 
-                            if (sourceFieldDataType == Schema.DisplayType.DateTime){
-                                DateTime sourceFieldValue = (DateTime) oi.get(sourceFieldMapping);
-                                DateTime oldDateTime = (DateTime)targetAsset.put(targetField.getName(), sourceFieldValue);
+            if( Util.isValidFieldList(fieldsToQuery, OrderItem.class, orderId) ){
+                System.debug(' orderToTarget - fieldsToQuery is a valid list of fields for OrderItem object');
+                list<OrderItem > orderItems = new List<OrderItem>(OrderLineSelector.getOrderItemsbyOrderIdFiltered(orderId, fieldsToQuery));
+                Schema.SObjectType targetObjectType = Schema.getGlobalDescribe().get(orderMapper.orderManager__Target_Object2__c);
+                Schema.DescribeSobjectResult targetObject = targetObjectType.getDescribe();
+                System.debug('OrderService.orderToTarget - The target object is ' + targetObject.getName());
+                if (targetObject.getName() =='Asset'){
+                    List <Asset> assetLists = new List<Asset>();
+                    for (OrderItem oi : orderItems){
+                        Asset targetAsset = new Asset();
+                        targetAsset.AccountId = oi.Order.AccountId;
+                        targetAsset.orderManager__Original_Order_Id__c = oi.Order.id;
+                        targetAsset.orderManager__Original_Order_Item_Id__c = oi.id;
+                        targetAsset.Name = oi.Product2.Name;
+                        targetAsset.orderManager__Created_By_Order_Manager__c = true;
+                        Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
+                        Schema.SObjectType sobjType = gd.get('OrderItem'); 
+                        Schema.DescribeSObjectResult sourceDescribeResult = sobjType.getDescribe(); 
+                        Map<String,Schema.SObjectField> sourceFieldsMap = sourceDescribeResult.fields.getMap();   
+                        Map<String,Schema.SObjectField> targetFieldsMap = targetObject.fields.getMap(); 
+                        System.debug('OrderService.orderToTarget - The fields in the target objects are  ' + targetFieldsMap);
+                        try {
+                            for(Field_Mapping__mdt fieldMapping :fieldMappings){
+                                String sourceFieldMapping = (String) fieldMapping.orderManager__Source_Field__c;
+                                String targetFieldMapping = (String) fieldMapping.orderManager__Target_Field__c;
+                                Schema.DescribeFieldResult  sourceField = sourceFieldsMap.get(sourceFieldMapping).getDescribe();
+                                Schema.DisplayType sourceFieldDataType = sourceField.getType();
+                                Schema.DescribeFieldResult  targetField = targetFieldsMap.get(targetFieldMapping).getDescribe();
+                                System.debug('OrderService.orderToTarget - The source field to be mapped is ' + sourceFieldMapping +  ' of type ' + sourceField.getType() + ' and the target field is '+ targetFieldMapping + ' of type ' + targetField.getType());
+                                if (sourceFieldDataType == Schema.DisplayType.String){
+                                    String sourceFieldValue = (String) oi.get(sourceFieldMapping);
+                                    String oldString = (String)targetAsset.put(targetField.getName(), sourceFieldValue);
+                                }     
+                                if (sourceFieldDataType == Schema.DisplayType.Double){
+                                    Double sourceFieldValue = (Double) oi.get(sourceFieldMapping);
+                                    Double oldDouble = (Double)targetAsset.put(targetField.getName(), sourceFieldValue);
+                                } 
+                                if (sourceFieldDataType == Schema.DisplayType.Reference){
+                                    Id sourceFieldValue = (Id) oi.get(sourceFieldMapping);
+                                    Id oldId = (Id)targetAsset.put(targetField.getName(), sourceFieldValue);
+                                } 
+                                if (sourceFieldDataType == Schema.DisplayType.Boolean){
+                                    Boolean sourceFieldValue = (Boolean) oi.get(sourceFieldMapping);
+                                    Boolean oldBoolean = (Boolean)targetAsset.put(targetField.getName(), sourceFieldValue);
+                                } 
+                                
+                                if (sourceFieldDataType == Schema.DisplayType.Date){
+                                    Date sourceFieldValue = (Date) oi.get(sourceFieldMapping);
+                                    Date oldDate = (Date)targetAsset.put(targetField.getName(), sourceFieldValue);
+                                } 
+                                if (sourceFieldDataType == Schema.DisplayType.DateTime){
+                                    DateTime sourceFieldValue = (DateTime) oi.get(sourceFieldMapping);
+                                    DateTime oldDateTime = (DateTime)targetAsset.put(targetField.getName(), sourceFieldValue);
+                                }
                             }
                         }
-                    }
-                    catch (Exception e){
-                        String errorDescription = 'One or more fields are not correctly mapped from the Order Item to the Asset Object. Please check the Field Mapping metadata record type to correct any incorrect field mapping.';
-                        ErrorHandling.createError(e, className,orderId, errorDescription);
-                    }
+                        catch (Exception e){
+                            String errorDescription = 'One or more fields are not correctly mapped from the Order Item to the Asset Object. Please check the Field Mapping metadata record type to correct any incorrect field mapping.';
+                            ErrorHandling.createError(e, CLASS_NAME,orderId, errorDescription);
+                        }
 
-                    assetLists.add(targetAsset);
-                }
-                try {
-                    System.debug('OrderService.orderToTarget - The number of Asset records to be created is  ' + assetLists.size());
-                    insert assetLists;
-                }
-                catch (DmlException e){
-                    ErrorHandling.createDMLError(e, className,orderId);
+                        assetLists.add(targetAsset);
+                    }
+                    try {
+                        System.debug('OrderService.orderToTarget - The number of Asset records to be created is  ' + assetLists.size());
+                        insert assetLists;
+                    }
+                    catch (DmlException e){
+                        ErrorHandling.createDMLError(e, CLASS_NAME,orderId);
+                    }
                 }
             }
+            System.debug(' orderToTarget - fieldsToQuery is NOT a valid list of fields for OrderItem object.');
+            String errorDescription = 'One or more fields are not correctly mapped from the Order Item to the Asset Object. Please check the Field Mapping metadata record type to correct any incorrect field mapping.';
+            ErrorHandling.createErrorWithoutException(CLASS_NAME,orderId, errorDescription);
         }
     }
 }

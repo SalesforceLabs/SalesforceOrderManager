@@ -23,4 +23,11 @@ public without sharing class ErrorHandling {
         errorHandler.orderManager__Order_Id__c = Id.valueOf(orderId);
         insert errorHandler;
     }
+    public static void createErrorWithoutException(String className, Id orderId, String description) {
+        orderManager__Error_Handler__c errorHandler = new orderManager__Error_Handler__c();
+        errorHandler.orderManager__Class_Name__c = className;
+        errorHandler.orderManager__Description__c = description;
+        errorHandler.orderManager__Order_Id__c = Id.valueOf(orderId);
+        insert errorHandler;
+    }
 }

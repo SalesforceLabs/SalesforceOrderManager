@@ -17,4 +17,15 @@ public without sharing class Util {
         }
         return isValidSalesforceId;       
     }
+    public static Boolean isValidFieldList(List<String> fieldNames, System.Type type, id orderId){
+        Boolean isValidFieldList = true;    
+        String sObjName = type.toString();
+        Set<String> objectFields = Schema.getGlobalDescribe().get(sObjName).getDescribe().fields.getMap().keySet();
+            for (String fieldName : fieldNames){
+                if (!objectFields.contains(fieldName.toLowerCase())) {
+                    isValidFieldList = false;
+                }
+            }
+        return isValidFieldList;
+    }
 }

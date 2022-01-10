@@ -1,6 +1,6 @@
 # Salesforce Order Manager
 
-The `Order Manager` Application offers a practical implementation of how order management processes are handled in Salesforce. This is an incremental project and the first distribution will focus on the Order to Asset process i.e. creating an asset for Order Items when the related Order is completed.
+The `Order Manager` Application offers a practical implementation of how order management processes could be handled in Salesforce. This is an incremental project and the first distribution will focus on the Order to Asset process i.e. creating an asset for Order Items when the related Order is completed.
 
 ## Distribution
 

@@ -4,6 +4,18 @@
         <application>Order_Manager</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>Field_Mapping__mdt</name>
+    </customMetadataTypeAccesses>
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>Order_Filter__mdt</name>
+    </customMetadataTypeAccesses>
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>Order_Mapper__mdt</name>
+    </customMetadataTypeAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.Created_By_Order_Manager__c</field>

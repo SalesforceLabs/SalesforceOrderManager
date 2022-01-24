@@ -92,7 +92,7 @@ public class OrderService_Test {
             Order order = new Order();
             order.AccountId = accs[i].id;
             order.Status = 'Draft';
-            order.Type = 'Activation';
+            order.Type = '';
             order.EffectiveDate = system.today();
             order.Pricebook2Id = priceBook.id;
             insert order;

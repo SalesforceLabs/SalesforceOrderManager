@@ -65,7 +65,7 @@ Orders can be filtered via following steps:
 <li>From Setup, enter <strong>Custom Metadata Types</strong>  in the Quick Find box, then select <strong>Custom Metadata Types</strong>. </li>
 <li>In the <strong>Custom Metadata Types</strong> list, search for <strong>Order Filter</strong> and then  click on Manage Records.</li>
 <li> Click on New and then enter a label, field name (i.e. the field API Name) and field value.</li>
-<li> Select the Order Mapper record e.g. the <strong>Order to Asset</strong> record.</li>
+<li> Select the Order Mapper record e.g. the <strong>Order to Asset</strong> record or the appropriate Order Mapper record.</li>
 <li> Click Save. </li>
 </ol>
 

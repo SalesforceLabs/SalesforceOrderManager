@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-            <members>Order_Filter.Order_Type</members>
-            <name>CustomMetadata</name>
+    <types>  
+        <members>orderManager__Order_Filter__mdt-Order Filter Layout</members>
+        <name>Layout</name>
     </types>
     <version>51.0</version>
 </Package>

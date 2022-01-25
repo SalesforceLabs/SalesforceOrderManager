@@ -8,10 +8,13 @@ The project will be distributed via Managed Package published in Salesforce Labs
 
 ## How it works
 
-The Order Manager application will create an Asset record for each Order Item when the related Order is completed. `Order to Asset` process will kick off only for Orders that match the filters defined in the Order Mapper metadata record type ( see [Configure the Order Mapper metadata ](#Configure-the-Order-Mapper)). In addition, Asset records will be created only for Order Items where the related Products have been marked as requiring an Asset ( see [Set Create Asset Field on Products](#Set-Create-Asset-Field-on-Products) ). Field values will be copied from the Order Item to the Asset record based on the Field Mapping configuration (see [Configure the Field Mapping metadata ](#Configure-Field-Mapping))
+The Order Manager application will create an Asset record for each Order Item when the related Order is completed. `Order to Asset` process will kick off only for Orders that match the filters defined in the Order Mapper metadata record type ( see [Configure the Order Mapper metadata ](#Configure-the-Order-Mapper)). In addition, Asset records will be created only for Order Items where the related Products have been marked as requiring an Asset ( see [Set Create Asset Field on Products](#Set-Create-Asset-Field-on-Products) ). Field values will be copied from the Order Item to the Asset record based on the Field Mapping configuration (see [Configure the Field Mapping metadata ](#Configure-Field-Mapping)). 
 
 ![Order to Asset](docs/OrderToAsset.gif)
 
+The Asset record created by the Order Manager process will store additional information in the `Order Manager` Section e.g. Order which created the asset in the first place. 
+
+![Asset](docs/Asset.png)
 
 ## What to do to make it work
 This section lists all the steps required to make sure the application works as expected.
@@ -116,8 +119,8 @@ Exceptions can also be found in the <strong>Error Handler</strong> tab as shown 
 
 <ol>
 <li> Users should be assigned to a Profile with Activate Orders permission in order to be able to activate Orders. This is required because of the standard Salesforce behaviour. </li>
-<li> If multiple Order Mapper records are applicable to the same Order, then the same Order record will result in multiple Asset records created (which is generally an undesirable behaviour). The best practice is to limit the amount of Order Mapper records and use selective filters to make sure the same order won't be processed by multiple Order Mappers.</li>
-<li> In case multiple Order Mappers are required, the best practice is always create a field mapping for the Product2 lookup. This is generally an expected behaviour that will result in the Asset-Product reationship. </li>
+<li> If multiple Order Mapper records are applicable to the same Order, then the same Order record will be processed multiple times which could result in multiple Asset records created (which is generally an undesirable behaviour). The best practice is to limit the amount of Order Mapper records and use selective filters to make sure the same order won't be processed by multiple Order Mappers.</li>
+<li> In case multiple Order Mappers are required, the best practice is to always keep a field mapping for the Product2 lookup. This is generally an expected behaviour that will result in the Asset-Product reationship. </li>
 <li> OM Dashboard and Report folders are shared with AllUsers. If you want to apply a restricted level of access, you'll need to change the folder sharing.</li>
 <li> The current distribution incudes already a record called 'Order to Asset' which you can modify accordingly to your requirements. Alternatively you can create more Order Mapper records.  </li>
 </ol>

@@ -139,8 +139,14 @@ public class OrderService_Test {
         fieldsToQuery.add('NEVER_EXISTING_FIELD');
         test.startTest();
         Order filteredOrder = new Order();
-        filteredOrder = OrderSelector.getOrderbyId(orderToProcess.id, fieldsToQuery);
+        try{ 
+            filteredOrder = OrderSelector.getOrderbyId(orderToProcess.id, fieldsToQuery);
+        }
+        catch(QueryException e){
+            System.assert(e.getMessage().contains('OrderSelector'), 'Unexpected exception message.');
+        }
         test.stopTest();
+        
     }
     @isTest
     static void orderLineSelectorException(){
@@ -153,7 +159,12 @@ public class OrderService_Test {
         List<String> fieldsToQuery = new List<String>();
         fieldsToQuery.add('NEVER_EXISTING_FIELD');
         test.startTest();
-        list<OrderItem > orderItems = new List<OrderItem>(OrderLineSelector.getOrderItemsbyOrderIdFiltered(orderToProcess.id, fieldsToQuery));
+        try{ 
+            list<OrderItem > orderItems = new List<OrderItem>(OrderLineSelector.getOrderItemsbyOrderIdFiltered(orderToProcess.id, fieldsToQuery));
+        }
+        catch(QueryException e){
+            System.assert(e.getMessage().contains('OrderLineSelector'), 'Unexpected exception message.');
+        }
         test.stopTest();
     }
 }

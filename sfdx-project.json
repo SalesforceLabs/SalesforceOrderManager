@@ -1,26 +1,28 @@
 {
-    "packageDirectories": [
-        {
-            "path": "force-app",
-            "default": true,
-            "package": "Order Manager",
-            "versionNumber": "1.3.1.NEXT",
-            "ancestorId": "Order Manager@1.3.0-0"
-        }
-    ],
-    "namespace": "orderManager",
-    "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "51.0",
-    "packageAliases": {
-        "Order Manager": "0Ho5e000000XZW7CAO",
-        "Order Manager@0.1.0-2": "04t5e0000002OwXAAU",
-        "Order Manager@0.1.0-3": "04t5e000000NiReAAK",
-        "Order Manager@0.1.0-4": "04t5e000000NiRjAAK",
-        "Order Manager@0.1.0-6": "04t5e000000NiSmAAK",
-        "Order Manager@0.1.0-7": "04t5e000000NiY8AAK",
-        "Order Manager@0.1.0-8": "04t5e000000NimWAAS",
-        "Order Manager@1.2.0-0": "04t5e000000NmX3AAK",
-        "Order Manager@1.3.0-0": "04t5e000000NmciAAC",
-        "Order Manager@1.4.0-0": "04t5e000000Nmd7AAC"
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true,
+      "package": "Order Manager",
+      "versionNumber": "1.6.0.NEXT",
+      "ancestorVersion": "HIGHEST"
     }
+  ],
+  "namespace": "orderManager",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "51.0",
+  "packageAliases": {
+    "Order Manager": "0Ho5e000000XZW7CAO",
+    "Order Manager@0.1.0-2": "04t5e0000002OwXAAU",
+    "Order Manager@0.1.0-3": "04t5e000000NiReAAK",
+    "Order Manager@0.1.0-4": "04t5e000000NiRjAAK",
+    "Order Manager@0.1.0-6": "04t5e000000NiSmAAK",
+    "Order Manager@0.1.0-7": "04t5e000000NiY8AAK",
+    "Order Manager@0.1.0-8": "04t5e000000NimWAAS",
+    "Order Manager@1.2.0-0": "04t5e000000NmX3AAK",
+    "Order Manager@1.3.0-0": "04t5e000000NmciAAC",
+    "Order Manager@1.4.0-0": "04t5e000000Nmd7AAC",
+    "Order Manager@1.5.0": "04t5e0000012FgTAAU",
+    "Order Manager@1.6.0": "04t5e0000012FgYAAU"
+  }
 }

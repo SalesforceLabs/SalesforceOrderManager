@@ -1,14 +1,17 @@
-public class OrderLineSelector {
+public with sharing class OrderLineSelector {
     private static String className = 'OrderLineSelector';
 
     public static List <OrderItem> getOrderItemsbyOrderIdFiltered (Id orderId, List<String> fieldsToQuery){
         list<OrderItem > orderItemsReturned = new List<OrderItem>();
+        Pattern pattern = Pattern.compile('[^a-zA-Z0-9]');
+        Matcher matcher = pattern.matcher(orderId);
+        String sanitizedOrderId = matcher.replaceAll('');
         try {
             list<OrderItem > orderItems = new List<OrderItem>();
             if(fieldsToQuery.size()==0){
                 orderItems = [SELECT FIELDS(STANDARD),Order.AccountId, Product2.orderManager__External_Id__c, Product2.Name,
                                 Product2.orderManager__Create_Asset__c 
-                                FROM OrderItem WHERE OrderId =: orderId AND Product2.orderManager__Create_Asset__c = true];
+                                FROM OrderItem WHERE OrderId =: sanitizedOrderId AND Product2.orderManager__Create_Asset__c = true];
             }
             if(fieldsToQuery.size()!=0){
                 String query = ' ';

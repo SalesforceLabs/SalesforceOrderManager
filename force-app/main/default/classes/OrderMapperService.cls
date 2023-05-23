@@ -1,4 +1,4 @@
-public class OrderMapperService {
+public with sharing class OrderMapperService {
 
     public static List<Field_Mapping__mdt> getFieldMappings (id orderMapperId){
         List<Field_Mapping__mdt> fieldMappings = new List<Field_Mapping__mdt>();

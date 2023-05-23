@@ -19,7 +19,7 @@ The Asset record created by the Order Manager process will store additional info
 ## What to do to make it work
 This section lists all the steps required to make sure the application works as expected.
 
--  [Assign the Order Manager permission set to Admin Users ](#Assign-the-Order-Manager-Permission-Set)
+-  [Assign the Order Manager permission set to Admin Users and the Order Manager Agent to standard Agents](#Assign-the-Order-Manager-Permission-Set)
 -  [Assign the OM Layouts to Admin Users](#Assign-the-OM-Layout)
 -  [Set Create Asset Field on Products](#Set-Create-Asset-Field-on-Products)
 -  [Configure the Order Mapper metadata ](#Configure-the-Order-Mapper)
@@ -28,7 +28,7 @@ This section lists all the steps required to make sure the application works as 
 
 ### Assign the Order Manager Permission Set
 
-The <strong>Order Manager</strong> Permission Set gives Users access to all the required information to configure the Order Manager application. This can be assigned via the following steps:
+The <strong>Order Manager</strong> Permission Set gives Users access to all the required information to configure the Order Manager application, whilst the <strong>Order Manager Agent</strong> Permission Set gives standard users the ability to work with the Order Manager package (e.g. access to Order Manager fields required to correctly create an asset record). The permission sets can be assigned via the following steps:
 
 <ol>
 <li>From Setup, enter Users in the Quick Find box, then select Users.

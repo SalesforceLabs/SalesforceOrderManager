@@ -1,4 +1,4 @@
-public without sharing class OrderSelector {
+public with sharing class OrderSelector {
     private static String className = 'OrderSelector';
     public static  Order getOrderbyId (Id orderId, List<String> fieldsToQuery) {
         Order orderToCheck = new Order();

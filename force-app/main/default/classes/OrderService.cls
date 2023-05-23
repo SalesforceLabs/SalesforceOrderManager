@@ -1,4 +1,4 @@
-public without sharing class OrderService {
+public with sharing class OrderService {
     private static boolean run = true;
     private static String className = 'OrderService';
 
@@ -76,10 +76,14 @@ public without sharing class OrderService {
             List <Asset> assetLists = new List<Asset>();
             for (OrderItem oi : orderItems){
  				Asset targetAsset = new Asset();
-                targetAsset.AccountId = oi.Order.AccountId;
-                targetAsset.orderManager__Original_Order_Id__c = oi.Order.id;
-                targetAsset.orderManager__Original_Order_Item_Id__c = oi.id;
-                targetAsset.Name = oi.Product2.Name;
+                String sanitizedAccountId = Util.sanitizeId(oi.Order.AccountId);
+                targetAsset.AccountId = sanitizedAccountId;
+                String sanitizedOrderId = Util.sanitizeId(oi.Order.id);
+                targetAsset.orderManager__Original_Order_Id__c = sanitizedOrderId;
+                String sanitizedOrdeItemId = Util.sanitizeId(oi.id);
+                targetAsset.orderManager__Original_Order_Item_Id__c = sanitizedOrdeItemId;
+                String sanitizedProductName = Util.sanitizeString(oi.Product2.Name);
+                targetAsset.Name = sanitizedProductName;
                 targetAsset.orderManager__Created_By_Order_Manager__c = true;
                 Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
                 Schema.SObjectType sobjType = gd.get('OrderItem'); 

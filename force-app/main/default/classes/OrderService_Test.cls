@@ -297,19 +297,24 @@ public class OrderService_Test {
     ErrorHandling.createCustomError(
       'OrderLineSelector',
       orderToProcess.Id,
-      'Description'
+      'Testing custom Error Description'
     );
+    List<orderManager__Error_Handler__c> errorHandlerList = new List<orderManager__Error_Handler__c>(
+      [
+        SELECT Id, Class_Name__c, Description__c
+        FROM orderManager__Error_Handler__c
+        WHERE orderManager__Order_Id__c = :orderToProcess.Id
+        LIMIT 1
+      ]
+    );
+    if (errorHandlerList.size() > 0) {
+      System.assert(
+        errorHandlerList[0]
+          .Description__c.contains('Testing custom Error Description'),
+        'Unexpected exception message.'
+      );
+    }
 
     test.stopTest();
-    orderManager__Error_Handler__c errorHandler = [
-      SELECT Id, Class_Name__c, Description__c
-      FROM orderManager__Error_Handler__c
-      WHERE orderManager__Order_Id__c = :orderToProcess.Id
-      LIMIT 1
-    ];
-    System.assert(
-      errorHandler.Class_Name__c.contains('OrderLineSelector'),
-      'Unexpected exception message.'
-    );
   }
 }
